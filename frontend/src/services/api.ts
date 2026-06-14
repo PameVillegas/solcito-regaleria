@@ -33,9 +33,10 @@ async function request<T>(path: string, options: RequestInit = {}): Promise<T> {
 
 export const api = {
   // Public
-  getProducts: (page = 1, categoryId?: string) => {
+  getProducts: (page = 1, categoryId?: string, sort?: string) => {
     let url = `/api/products?page=${page}`;
     if (categoryId) url += `&category=${categoryId}`;
+    if (sort) url += `&sort=${sort}`;
     return request<any>(url);
   },
   searchProducts: (q: string, page = 1) => request<any>(`/api/products/search?q=${encodeURIComponent(q)}&page=${page}`),

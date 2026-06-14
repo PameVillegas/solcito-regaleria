@@ -9,6 +9,7 @@ export function CatalogPage() {
   const [products, setProducts] = useState<any[]>([]);
   const [categories, setCategories] = useState<any[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string>('');
+  const [sortBy, setSortBy] = useState<string>('');
   const [pagination, setPagination] = useState<any>(null);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(true);
@@ -21,14 +22,14 @@ export function CatalogPage() {
     setLoading(true);
     const fetchData = query.length >= 2
       ? api.searchProducts(query, page)
-      : api.getProducts(page, selectedCategory || undefined);
+      : api.getProducts(page, selectedCategory || undefined, sortBy || undefined);
 
     fetchData.then(res => {
       setProducts(res.data);
       setPagination(res.pagination);
     }).catch(() => setProducts([]))
       .finally(() => setLoading(false));
-  }, [query, page, selectedCategory]);
+  }, [query, page, selectedCategory, sortBy]);
 
   return (
     <div>
@@ -120,9 +121,23 @@ export function CatalogPage() {
           </div>
         ) : (
           <>
-            {/* Section title */}
-            {!query && !selectedCategory && (
-              <h2 className="font-bold text-gray-800 mb-3">🔥 Nuestros productos</h2>
+            {/* Section title + Sort */}
+            {!query && (
+              <div className="flex justify-between items-center mb-3">
+                <h2 className="font-bold text-gray-800">🔥 Nuestros productos</h2>
+                <select
+                  value={sortBy}
+                  onChange={e => { setSortBy(e.target.value); setPage(1); }}
+                  className="text-sm border rounded-lg px-3 py-1.5 bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-orange-300"
+                >
+                  <option value="">Ordenar por</option>
+                  <option value="name_asc">A → Z</option>
+                  <option value="name_desc">Z → A</option>
+                  <option value="price_asc">Menor precio</option>
+                  <option value="price_desc">Mayor precio</option>
+                  <option value="newest">Más nuevos</option>
+                </select>
+              </div>
             )}
 
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">

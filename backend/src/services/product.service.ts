@@ -60,7 +60,7 @@ export async function getProductById(id: string) {
   });
 }
 
-export async function getAvailableProducts(page: number = 1, pageSize: number = 20, categoryId?: string) {
+export async function getAvailableProducts(page: number = 1, pageSize: number = 20, categoryId?: string, sort?: string) {
   const now = new Date();
   const skip = (page - 1) * pageSize;
 
@@ -75,6 +75,14 @@ export async function getAvailableProducts(page: number = 1, pageSize: number = 
     where.categoryId = categoryId;
   }
 
+  // Determine sort order
+  let orderBy: any = { name: 'asc' };
+  if (sort === 'price_asc') orderBy = { price: 'asc' };
+  else if (sort === 'price_desc') orderBy = { price: 'desc' };
+  else if (sort === 'name_asc') orderBy = { name: 'asc' };
+  else if (sort === 'name_desc') orderBy = { name: 'desc' };
+  else if (sort === 'newest') orderBy = { createdAt: 'desc' };
+
   const [products, total] = await Promise.all([
     prisma.product.findMany({
       where,
@@ -86,7 +94,7 @@ export async function getAvailableProducts(page: number = 1, pageSize: number = 
           where: { isActive: true, startDate: { lte: now }, endDate: { gt: now } },
         },
       },
-      orderBy: { name: 'asc' },
+      orderBy,
       skip,
       take: pageSize,
     }),
