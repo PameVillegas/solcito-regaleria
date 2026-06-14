@@ -33,6 +33,9 @@ export function AdminLayout() {
           <Link to="/admin/products" onClick={() => setMenuOpen(false)} className="px-4 py-2 rounded hover:bg-amber-600 transition">
             📦 Artículos
           </Link>
+          <Link to="/admin/categories" onClick={() => setMenuOpen(false)} className="px-4 py-2 rounded hover:bg-amber-600 transition">
+            🏷️ Categorías
+          </Link>
           <Link to="/admin/config" onClick={() => setMenuOpen(false)} className="px-4 py-2 rounded hover:bg-amber-600 transition">
             ⚙️ Configuración
           </Link>

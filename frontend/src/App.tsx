@@ -10,6 +10,7 @@ import { AdminDashboard } from './pages/admin/AdminDashboard';
 import { AdminProducts } from './pages/admin/AdminProducts';
 import { AdminProductForm } from './pages/admin/AdminProductForm';
 import { AdminConfig } from './pages/admin/AdminConfig';
+import { AdminCategories } from './pages/admin/AdminCategories';
 import { ProtectedRoute } from './components/ProtectedRoute';
 
 export default function App() {
@@ -33,6 +34,7 @@ export default function App() {
           <Route path="/admin/products" element={<AdminProducts />} />
           <Route path="/admin/products/new" element={<AdminProductForm />} />
           <Route path="/admin/products/:id" element={<AdminProductForm />} />
+          <Route path="/admin/categories" element={<AdminCategories />} />
           <Route path="/admin/config" element={<AdminConfig />} />
         </Route>
       </Route>
