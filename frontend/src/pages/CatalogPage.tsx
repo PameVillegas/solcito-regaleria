@@ -36,13 +36,16 @@ export function CatalogPage() {
       {/* Hero Banner */}
       {!query && !selectedCategory && (
         <div className="bg-gradient-to-r from-orange-400 to-pink-400 text-white px-6 py-8 md:py-12 md:rounded-b-2xl">
-          <div className="max-w-xl">
-            <h1 className="text-2xl md:text-4xl font-bold mb-2">Regalos</h1>
-            <p className="text-lg md:text-xl font-light mb-1">para toda ocasión</p>
-            <p className="text-sm opacity-90 mb-4">Sorprendé a esa persona especial con el detalle perfecto.</p>
-            <a href="#productos" className="inline-block bg-green-500 text-white px-5 py-2 rounded-full font-medium hover:bg-green-600 transition text-sm">
-              Ver productos
-            </a>
+          <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
+            <div className="max-w-xl">
+              <h1 className="text-2xl md:text-4xl font-bold mb-2">Regalos</h1>
+              <p className="text-lg md:text-xl font-light mb-1">para toda ocasión</p>
+              <p className="text-sm opacity-90 mb-4">Sorprendé a esa persona especial con el detalle perfecto.</p>
+              <a href="#productos" className="inline-block bg-green-500 text-white px-5 py-2 rounded-full font-medium hover:bg-green-600 transition text-sm">
+                Ver productos
+              </a>
+            </div>
+            <img src="/regalos.jpg" alt="Regalos" className="hidden sm:block w-40 md:w-56 lg:w-64 rounded-xl shadow-lg object-cover" />
           </div>
         </div>
       )}
