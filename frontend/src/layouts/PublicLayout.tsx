@@ -107,7 +107,7 @@ export function PublicLayout() {
             </div>
             <div>
               <p className="font-medium mb-2">📍 Ubicación</p>
-              <p className="text-green-200 text-sm">Calle Bolivia, Ciudad Junín</p>
+              <p className="text-green-200 text-sm">Bolivia N° 592, Ciudad Junín</p>
               <p className="text-green-200 text-sm">Provincia de Buenos Aires, Argentina</p>
             </div>
             <div>
