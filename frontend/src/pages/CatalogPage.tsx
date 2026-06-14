@@ -32,129 +32,159 @@ export function CatalogPage() {
 
   return (
     <div>
-      {/* Welcome message */}
-      {!query && (
-        <div className="text-center mb-6">
-          <h1 className="text-2xl md:text-3xl font-bold text-amber-700">¡Bienvenidos! 🌻</h1>
-          <p className="text-gray-600 mt-1">Encontrá el regalo perfecto para cada ocasión</p>
+      {/* Hero Banner */}
+      {!query && !selectedCategory && (
+        <div className="bg-gradient-to-r from-orange-400 to-pink-400 text-white px-6 py-8 md:py-12 md:rounded-b-2xl">
+          <div className="max-w-xl">
+            <h1 className="text-2xl md:text-4xl font-bold mb-2">Regalos</h1>
+            <p className="text-lg md:text-xl font-light mb-1">para toda ocasión</p>
+            <p className="text-sm opacity-90 mb-4">Sorprendé a esa persona especial con el detalle perfecto.</p>
+            <a href="#productos" className="inline-block bg-green-500 text-white px-5 py-2 rounded-full font-medium hover:bg-green-600 transition text-sm">
+              Ver productos
+            </a>
+          </div>
         </div>
       )}
 
-      {/* Category filters */}
-      {categories.length > 0 && !query && (
-        <div className="flex flex-wrap gap-2 mb-6 justify-center">
-          <button
-            onClick={() => { setSelectedCategory(''); setPage(1); }}
-            className={`px-4 py-1.5 rounded-full text-sm font-medium transition ${
-              !selectedCategory ? 'bg-amber-500 text-white' : 'bg-white text-gray-700 hover:bg-amber-100 border'
-            }`}
-          >
-            Todos
-          </button>
-          {categories.map(cat => (
-            <button
-              key={cat.id}
-              onClick={() => { setSelectedCategory(cat.id); setPage(1); }}
-              className={`px-4 py-1.5 rounded-full text-sm font-medium transition ${
-                selectedCategory === cat.id ? 'bg-amber-500 text-white' : 'bg-white text-gray-700 hover:bg-amber-100 border'
-              }`}
-            >
-              {cat.name}
-            </button>
-          ))}
+      {/* Trust badges */}
+      {!query && !selectedCategory && (
+        <div className="flex justify-center gap-6 md:gap-12 py-4 border-b bg-white text-xs text-gray-600 px-4 overflow-x-auto">
+          <div className="flex items-center gap-1 whitespace-nowrap">
+            <span>🚚</span> Envíos a todo el país
+          </div>
+          <div className="flex items-center gap-1 whitespace-nowrap">
+            <span>✨</span> Productos de calidad
+          </div>
+          <div className="flex items-center gap-1 whitespace-nowrap">
+            <span>💬</span> Atención personalizada
+          </div>
         </div>
       )}
 
-      {query && (
-        <p className="mb-4 text-gray-600">
-          Resultados para: <strong>"{query}"</strong> ({pagination?.totalItems || 0} encontrados)
-        </p>
-      )}
-
-      {loading ? (
-        <div className="text-center py-12 text-amber-700">Cargando artículos...</div>
-      ) : products.length === 0 ? (
-        <div className="text-center py-12">
-          <p className="text-gray-500 text-lg">
-            {query ? `No se encontraron resultados para "${query}"` : 'No hay artículos disponibles'}
-          </p>
-        </div>
-      ) : (
-        <>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {products.map(product => (
-              <Link
-                key={product.id}
-                to={`/product/${product.id}`}
-                className="bg-white rounded-lg shadow hover:shadow-lg transition overflow-hidden"
+      <div className="px-4 py-4" id="productos">
+        {/* Categories section */}
+        {categories.length > 0 && !query && (
+          <div className="mb-6">
+            <div className="flex justify-between items-center mb-3">
+              <h2 className="font-bold text-gray-800">Categorías</h2>
+            </div>
+            <div className="flex gap-4 overflow-x-auto pb-2">
+              <button
+                onClick={() => { setSelectedCategory(''); setPage(1); }}
+                className={`flex flex-col items-center gap-1 min-w-[70px] ${!selectedCategory ? 'opacity-100' : 'opacity-60'}`}
               >
-                <div className="aspect-square bg-gray-100">
-                  {product.images?.[0] ? (
-                    <img src={product.images[0].url} alt={product.name} className="w-full h-full object-cover" />
-                  ) : (
-                    <div className="w-full h-full flex items-center justify-center text-gray-400 text-4xl">📷</div>
-                  )}
+                <div className={`w-14 h-14 rounded-full flex items-center justify-center text-2xl ${!selectedCategory ? 'bg-orange-100 ring-2 ring-orange-400' : 'bg-gray-100'}`}>
+                  🛍️
                 </div>
-                <div className="p-3">
-                  <h3 className="font-medium text-gray-800 truncate">{product.name}</h3>
-                  <div className="mt-1">
-                    {product.discountedPrice ? (
-                      <div className="flex items-center gap-2">
-                        <span className="text-red-500 font-bold">{formatPrice(product.discountedPrice)}</span>
-                        <span className="text-gray-400 line-through text-sm">{formatPrice(product.price)}</span>
-                      </div>
+                <span className="text-xs text-gray-700">Todos</span>
+              </button>
+              {categories.map(cat => (
+                <button
+                  key={cat.id}
+                  onClick={() => { setSelectedCategory(cat.id); setPage(1); }}
+                  className={`flex flex-col items-center gap-1 min-w-[70px] ${selectedCategory === cat.id ? 'opacity-100' : 'opacity-60'}`}
+                >
+                  <div className={`w-14 h-14 rounded-full flex items-center justify-center text-2xl ${selectedCategory === cat.id ? 'bg-orange-100 ring-2 ring-orange-400' : 'bg-gray-100'}`}>
+                    🎁
+                  </div>
+                  <span className="text-xs text-gray-700 truncate max-w-[70px]">{cat.name}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Search results info */}
+        {query && (
+          <p className="mb-4 text-gray-600">
+            Resultados para: <strong>"{query}"</strong> ({pagination?.totalItems || 0})
+          </p>
+        )}
+        {selectedCategory && !query && (
+          <div className="mb-4 flex items-center gap-2">
+            <span className="text-gray-600 font-medium">
+              {categories.find(c => c.id === selectedCategory)?.name}
+            </span>
+            <button onClick={() => setSelectedCategory('')} className="text-xs text-orange-500 hover:underline">✕ Limpiar filtro</button>
+          </div>
+        )}
+
+        {/* Products */}
+        {loading ? (
+          <div className="text-center py-12 text-gray-500">Cargando...</div>
+        ) : products.length === 0 ? (
+          <div className="text-center py-12">
+            <p className="text-gray-400 text-lg">
+              {query ? `No se encontraron resultados para "${query}"` : 'No hay artículos disponibles'}
+            </p>
+          </div>
+        ) : (
+          <>
+            {/* Section title */}
+            {!query && !selectedCategory && (
+              <h2 className="font-bold text-gray-800 mb-3">🔥 Nuestros productos</h2>
+            )}
+
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
+              {products.map(product => (
+                <Link
+                  key={product.id}
+                  to={`/product/${product.id}`}
+                  className="bg-white rounded-xl shadow-sm hover:shadow-md transition overflow-hidden border border-gray-100"
+                >
+                  <div className="aspect-square bg-gray-50 relative">
+                    {product.images?.[0] ? (
+                      <img src={product.images[0].url} alt={product.name} className="w-full h-full object-cover" />
                     ) : (
-                      <span className="text-amber-700 font-bold">{formatPrice(product.price)}</span>
+                      <div className="w-full h-full flex items-center justify-center text-gray-300 text-3xl">📷</div>
+                    )}
+                    {product.promotion && (
+                      <span className="absolute top-2 left-2 bg-red-500 text-white text-xs px-2 py-0.5 rounded-full font-medium">
+                        -{product.promotion.discountPercentage}%
+                      </span>
                     )}
                   </div>
-                  {product.promotion && (
-                    <span className="inline-block mt-1 bg-red-100 text-red-600 text-xs px-2 py-0.5 rounded">
-                      -{product.promotion.discountPercentage}%
-                    </span>
-                  )}
-                </div>
-              </Link>
-            ))}
-          </div>
-
-          {/* Pagination */}
-          {pagination && pagination.totalPages > 1 && (
-            <div className="flex justify-center gap-2 mt-8">
-              <button
-                onClick={() => setPage(p => Math.max(1, p - 1))}
-                disabled={page === 1}
-                className="px-4 py-2 bg-amber-500 text-white rounded disabled:opacity-50"
-              >
-                ← Anterior
-              </button>
-              <span className="px-4 py-2 text-gray-600">
-                Página {page} de {pagination.totalPages}
-              </span>
-              <button
-                onClick={() => setPage(p => Math.min(pagination.totalPages, p + 1))}
-                disabled={page === pagination.totalPages}
-                className="px-4 py-2 bg-amber-500 text-white rounded disabled:opacity-50"
-              >
-                Siguiente →
-              </button>
+                  <div className="p-2">
+                    <h3 className="text-xs font-medium text-gray-700 truncate">{product.name}</h3>
+                    <div className="mt-1">
+                      {product.discountedPrice ? (
+                        <div>
+                          <span className="text-gray-400 line-through text-xs">{formatPrice(product.price)}</span>
+                          <span className="text-orange-600 font-bold text-sm ml-1">{formatPrice(product.discountedPrice)}</span>
+                        </div>
+                      ) : (
+                        <span className="text-gray-800 font-bold text-sm">{formatPrice(product.price)}</span>
+                      )}
+                    </div>
+                  </div>
+                </Link>
+              ))}
             </div>
-          )}
-        </>
-      )}
 
-      {/* Store info section */}
-      <div className="mt-12 bg-white rounded-lg shadow p-6 text-center">
-        <h2 className="text-lg font-bold text-amber-700 mb-3">📍 Información del local</h2>
-        <p className="text-gray-700 font-medium">Vendedora: Sol Fernandez</p>
-        <p className="text-gray-600 mt-2">📍 Calle Bolivia, Ciudad Junín, Provincia de Buenos Aires, Argentina</p>
-        <a
-          href="https://www.instagram.com/solcito.regaleria?igsh=YzFndTRlMDI4Z2V5"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-block mt-3 text-pink-600 hover:text-pink-700 font-medium"
-        >
-          📸 @solcito.regaleria en Instagram
-        </a>
+            {/* Pagination */}
+            {pagination && pagination.totalPages > 1 && (
+              <div className="flex justify-center gap-2 mt-6">
+                <button
+                  onClick={() => setPage(p => Math.max(1, p - 1))}
+                  disabled={page === 1}
+                  className="px-3 py-1.5 bg-orange-500 text-white rounded-full text-sm disabled:opacity-50"
+                >
+                  ←
+                </button>
+                <span className="px-3 py-1.5 text-gray-600 text-sm">
+                  {page} / {pagination.totalPages}
+                </span>
+                <button
+                  onClick={() => setPage(p => Math.min(pagination.totalPages, p + 1))}
+                  disabled={page === pagination.totalPages}
+                  className="px-3 py-1.5 bg-orange-500 text-white rounded-full text-sm disabled:opacity-50"
+                >
+                  →
+                </button>
+              </div>
+            )}
+          </>
+        )}
       </div>
     </div>
   );
