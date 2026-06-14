@@ -21,8 +21,10 @@ export function AdminLayout() {
       {/* Sidebar */}
       <aside className={`${menuOpen ? 'block' : 'hidden'} md:block w-full md:w-64 bg-amber-700 text-white min-h-screen`}>
         <div className="p-4 hidden md:block">
-          <h1 className="font-bold text-lg">🌻 SOLCITO</h1>
-          <p className="text-amber-200 text-sm">Panel de Administración</p>
+          <Link to="/admin" className="block">
+            <h1 className="font-bold text-lg">🌻 SOLCITO</h1>
+            <p className="text-amber-200 text-sm">Panel de Administración</p>
+          </Link>
         </div>
         <nav className="flex flex-col gap-1 p-2">
           <Link to="/admin" onClick={() => setMenuOpen(false)} className="px-4 py-2 rounded hover:bg-amber-600 transition">

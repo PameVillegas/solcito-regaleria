@@ -33,7 +33,7 @@ export function LoginPage() {
         </div>
 
         <h1 className="text-xl font-bold text-center text-amber-700 mb-1">SOLCITO REGALERIA</h1>
-        <p className="text-center text-gray-500 mb-6 text-sm">Panel de Administración</p>
+        <p className="text-center text-gray-500 mb-6 text-sm">Acceso Administración</p>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
@@ -64,24 +64,15 @@ export function LoginPage() {
             disabled={loading}
             className="w-full bg-amber-500 text-white py-2 rounded font-medium hover:bg-amber-600 transition disabled:opacity-50"
           >
-            {loading ? 'Ingresando...' : 'Ingresar como Administradora'}
+            {loading ? 'Ingresando...' : 'Ingresar'}
           </button>
         </form>
 
-        {/* Separator */}
-        <div className="flex items-center my-6">
-          <div className="flex-1 border-t border-gray-300"></div>
-          <span className="px-3 text-gray-400 text-sm">o</span>
-          <div className="flex-1 border-t border-gray-300"></div>
+        <div className="mt-6 text-center">
+          <Link to="/" className="text-amber-600 hover:underline text-sm">
+            ← Volver al catálogo
+          </Link>
         </div>
-
-        {/* Client access button */}
-        <Link
-          to="/"
-          className="block w-full text-center bg-green-500 text-white py-3 rounded font-medium hover:bg-green-600 transition"
-        >
-          🛒 Ingresar como Cliente al Catálogo
-        </Link>
       </div>
     </div>
   );

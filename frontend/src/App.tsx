@@ -15,10 +15,7 @@ import { ProtectedRoute } from './components/ProtectedRoute';
 export default function App() {
   return (
     <Routes>
-      {/* Welcome / Login page */}
-      <Route path="/login" element={<LoginPage />} />
-
-      {/* Public routes */}
+      {/* Public routes - Cliente */}
       <Route element={<PublicLayout />}>
         <Route path="/" element={<CatalogPage />} />
         <Route path="/product/:id" element={<ProductDetailPage />} />
@@ -26,8 +23,10 @@ export default function App() {
         <Route path="/checkout" element={<CheckoutPage />} />
       </Route>
 
-      {/* Admin routes */}
+      {/* Admin login */}
       <Route path="/admin/login" element={<LoginPage />} />
+
+      {/* Admin routes (protected) */}
       <Route element={<ProtectedRoute />}>
         <Route element={<AdminLayout />}>
           <Route path="/admin" element={<AdminDashboard />} />

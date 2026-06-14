@@ -16,11 +16,21 @@ export function PublicLayout() {
 
   return (
     <div className="min-h-screen bg-amber-50">
+      {/* Top bar with admin link */}
+      <div className="bg-amber-700 text-amber-200 text-xs py-1 px-4 flex justify-end">
+        <Link to="/admin/login" className="hover:text-white transition">
+          Admin
+        </Link>
+      </div>
+
       {/* Header */}
       <header className="bg-amber-500 shadow-md sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-4 flex-wrap">
-          <Link to="/" className="text-white font-bold text-xl md:text-2xl whitespace-nowrap">
-            🌻 SOLCITO REGALERIA
+          <Link to="/" className="flex items-center gap-2">
+            <img src="/logosol.png" alt="Logo" className="h-10 w-auto" />
+            <span className="text-white font-bold text-lg md:text-2xl whitespace-nowrap">
+              SOLCITO REGALERIA
+            </span>
           </Link>
 
           {/* Search */}
