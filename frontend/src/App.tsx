@@ -15,6 +15,9 @@ import { ProtectedRoute } from './components/ProtectedRoute';
 export default function App() {
   return (
     <Routes>
+      {/* Welcome / Login page */}
+      <Route path="/login" element={<LoginPage />} />
+
       {/* Public routes */}
       <Route element={<PublicLayout />}>
         <Route path="/" element={<CatalogPage />} />
