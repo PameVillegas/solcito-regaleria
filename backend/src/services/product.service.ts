@@ -60,29 +60,28 @@ export async function getProductById(id: string) {
   });
 }
 
-export async function getAvailableProducts(page: number = 1, pageSize: number = 20) {
+export async function getAvailableProducts(page: number = 1, pageSize: number = 20, categoryId?: string) {
   const now = new Date();
   const skip = (page - 1) * pageSize;
 
-  const where = {
+  const where: any = {
     price: { gt: 0 },
     images: { some: {} },
-    OR: [
-      { isManuallyUnavailable: false, stock: { gt: 0 } },
-    ],
+    isManuallyUnavailable: false,
+    stock: { gt: 0 },
   };
+
+  if (categoryId) {
+    where.categoryId = categoryId;
+  }
 
   const [products, total] = await Promise.all([
     prisma.product.findMany({
-      where: {
-        price: { gt: 0 },
-        images: { some: {} },
-        isManuallyUnavailable: false,
-        stock: { gt: 0 },
-      },
+      where,
       include: {
         images: { orderBy: { sortOrder: 'asc' } },
         colors: true,
+        category: true,
         promotions: {
           where: { isActive: true, startDate: { lte: now }, endDate: { gt: now } },
         },
@@ -91,14 +90,7 @@ export async function getAvailableProducts(page: number = 1, pageSize: number = 
       skip,
       take: pageSize,
     }),
-    prisma.product.count({
-      where: {
-        price: { gt: 0 },
-        images: { some: {} },
-        isManuallyUnavailable: false,
-        stock: { gt: 0 },
-      },
-    }),
+    prisma.product.count({ where }),
   ]);
 
   return {

@@ -40,7 +40,7 @@ export function PublicLayout() {
               placeholder="Buscar artículos..."
               value={searchQuery}
               onChange={e => setSearchQuery(e.target.value)}
-              className="w-full px-4 py-2 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-amber-300"
+              className="w-full px-4 py-2 rounded-full text-sm bg-white text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-300"
             />
           </form>
 

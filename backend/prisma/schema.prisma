@@ -14,12 +14,23 @@ model Product {
   price                 Float
   stock                 Int            @default(0)
   isManuallyUnavailable Boolean        @default(false)
+  categoryId            String?
   createdAt             DateTime       @default(now())
   updatedAt             DateTime       @updatedAt
 
+  category   Category?      @relation(fields: [categoryId], references: [id])
   images     ProductImage[]
   colors     ProductColor[]
   promotions Promotion[]
+}
+
+model Category {
+  id        String    @id @default(uuid())
+  name      String    @unique
+  sortOrder Int       @default(0)
+  createdAt DateTime  @default(now())
+
+  products Product[]
 }
 
 model ProductImage {

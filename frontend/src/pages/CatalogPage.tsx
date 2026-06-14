@@ -7,36 +7,73 @@ export function CatalogPage() {
   const [searchParams] = useSearchParams();
   const query = searchParams.get('q') || '';
   const [products, setProducts] = useState<any[]>([]);
+  const [categories, setCategories] = useState<any[]>([]);
+  const [selectedCategory, setSelectedCategory] = useState<string>('');
   const [pagination, setPagination] = useState<any>(null);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    api.getCategories().then(setCategories).catch(() => {});
+  }, []);
+
+  useEffect(() => {
     setLoading(true);
     const fetchData = query.length >= 2
       ? api.searchProducts(query, page)
-      : api.getProducts(page);
+      : api.getProducts(page, selectedCategory || undefined);
 
     fetchData.then(res => {
       setProducts(res.data);
       setPagination(res.pagination);
     }).catch(() => setProducts([]))
       .finally(() => setLoading(false));
-  }, [query, page]);
-
-  if (loading) {
-    return <div className="text-center py-12 text-amber-700">Cargando artículos...</div>;
-  }
+  }, [query, page, selectedCategory]);
 
   return (
     <div>
+      {/* Welcome message */}
+      {!query && (
+        <div className="text-center mb-6">
+          <h1 className="text-2xl md:text-3xl font-bold text-amber-700">¡Bienvenidos! 🌻</h1>
+          <p className="text-gray-600 mt-1">Encontrá el regalo perfecto para cada ocasión</p>
+        </div>
+      )}
+
+      {/* Category filters */}
+      {categories.length > 0 && !query && (
+        <div className="flex flex-wrap gap-2 mb-6 justify-center">
+          <button
+            onClick={() => { setSelectedCategory(''); setPage(1); }}
+            className={`px-4 py-1.5 rounded-full text-sm font-medium transition ${
+              !selectedCategory ? 'bg-amber-500 text-white' : 'bg-white text-gray-700 hover:bg-amber-100 border'
+            }`}
+          >
+            Todos
+          </button>
+          {categories.map(cat => (
+            <button
+              key={cat.id}
+              onClick={() => { setSelectedCategory(cat.id); setPage(1); }}
+              className={`px-4 py-1.5 rounded-full text-sm font-medium transition ${
+                selectedCategory === cat.id ? 'bg-amber-500 text-white' : 'bg-white text-gray-700 hover:bg-amber-100 border'
+              }`}
+            >
+              {cat.name}
+            </button>
+          ))}
+        </div>
+      )}
+
       {query && (
         <p className="mb-4 text-gray-600">
           Resultados para: <strong>"{query}"</strong> ({pagination?.totalItems || 0} encontrados)
         </p>
       )}
 
-      {products.length === 0 ? (
+      {loading ? (
+        <div className="text-center py-12 text-amber-700">Cargando artículos...</div>
+      ) : products.length === 0 ? (
         <div className="text-center py-12">
           <p className="text-gray-500 text-lg">
             {query ? `No se encontraron resultados para "${query}"` : 'No hay artículos disponibles'}
@@ -104,6 +141,21 @@ export function CatalogPage() {
           )}
         </>
       )}
+
+      {/* Store info section */}
+      <div className="mt-12 bg-white rounded-lg shadow p-6 text-center">
+        <h2 className="text-lg font-bold text-amber-700 mb-3">📍 Información del local</h2>
+        <p className="text-gray-700 font-medium">Vendedora: Sol Fernandez</p>
+        <p className="text-gray-600 mt-2">📍 Calle Bolivia, Ciudad Junín, Provincia de Buenos Aires, Argentina</p>
+        <a
+          href="https://www.instagram.com/solcito.regaleria?igsh=YzFndTRlMDI4Z2V5"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-block mt-3 text-pink-600 hover:text-pink-700 font-medium"
+        >
+          📸 @solcito.regaleria en Instagram
+        </a>
+      </div>
     </div>
   );
 }

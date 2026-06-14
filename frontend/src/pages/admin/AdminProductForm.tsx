@@ -12,6 +12,8 @@ export function AdminProductForm() {
   const [price, setPrice] = useState('');
   const [stock, setStock] = useState('0');
   const [isManuallyUnavailable, setIsManuallyUnavailable] = useState(false);
+  const [categoryId, setCategoryId] = useState('');
+  const [categories, setCategories] = useState<any[]>([]);
   const [images, setImages] = useState<any[]>([]);
   const [colors, setColors] = useState<any[]>([]);
   const [newColor, setNewColor] = useState('');
@@ -25,6 +27,7 @@ export function AdminProductForm() {
   const [promoEnd, setPromoEnd] = useState('');
 
   useEffect(() => {
+    api.getAdminCategories().then(setCategories).catch(() => {});
     if (id) {
       api.getAdminProduct(id).then(p => {
         setName(p.name);
@@ -32,6 +35,7 @@ export function AdminProductForm() {
         setPrice(p.price.toString());
         setStock(p.stock.toString());
         setIsManuallyUnavailable(p.isManuallyUnavailable);
+        setCategoryId(p.categoryId || '');
         setImages(p.images || []);
         setColors(p.colors || []);
         setPromotions(p.promotions || []);
@@ -50,6 +54,7 @@ export function AdminProductForm() {
         price: parseFloat(price),
         stock: parseInt(stock),
         isManuallyUnavailable,
+        categoryId: categoryId || null,
       };
       if (isEditing) {
         await api.updateProduct(id!, data);
@@ -162,6 +167,16 @@ export function AdminProductForm() {
             <input type="number" min="0" value={stock} onChange={e => setStock(e.target.value)}
               className="w-full border rounded px-3 py-2" required />
           </div>
+        </div>
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">Categoría</label>
+          <select value={categoryId} onChange={e => setCategoryId(e.target.value)}
+            className="w-full border rounded px-3 py-2">
+            <option value="">Sin categoría</option>
+            {categories.map(cat => (
+              <option key={cat.id} value={cat.id}>{cat.name}</option>
+            ))}
+          </select>
         </div>
         <div className="flex items-center gap-2">
           <input type="checkbox" id="unavailable" checked={isManuallyUnavailable}

@@ -7,7 +7,8 @@ productPublicRoutes.get('/', async (req: Request, res: Response) => {
   try {
     const page = parseInt(req.query.page as string) || 1;
     const pageSize = parseInt(req.query.pageSize as string) || 20;
-    const result = await getAvailableProducts(page, Math.min(pageSize, 50));
+    const categoryId = req.query.category as string | undefined;
+    const result = await getAvailableProducts(page, Math.min(pageSize, 50), categoryId);
     res.json(result);
   } catch (error) {
     res.status(500).json({ error: 'Error interno del servidor' });

@@ -12,6 +12,8 @@ import { paymentPublicRoutes } from './routes/payment.routes';
 import { adminPaymentRoutes } from './routes/admin/payment.routes';
 import { configPublicRoutes } from './routes/config.routes';
 import { adminConfigRoutes } from './routes/admin/config.routes';
+import { categoryPublicRoutes } from './routes/category.routes';
+import { adminCategoryRoutes } from './routes/admin/category.routes';
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -23,6 +25,7 @@ app.use(express.json());
 
 // Public routes
 app.use('/api/products', productPublicRoutes);
+app.use('/api/categories', categoryPublicRoutes);
 app.use('/api/shipping-options', shippingPublicRoutes);
 app.use('/api/payment-options', paymentPublicRoutes);
 app.use('/api/config', configPublicRoutes);
@@ -33,6 +36,7 @@ app.use('/api/auth', authRoutes);
 // Admin routes (protected)
 app.use('/api/admin/products', adminProductRoutes);
 app.use('/api/admin/promotions', adminPromotionRoutes);
+app.use('/api/admin/categories', adminCategoryRoutes);
 app.use('/api/admin/shipping-options', adminShippingRoutes);
 app.use('/api/admin/payment-options', adminPaymentRoutes);
 app.use('/api/admin/config', adminConfigRoutes);

@@ -33,12 +33,17 @@ async function request<T>(path: string, options: RequestInit = {}): Promise<T> {
 
 export const api = {
   // Public
-  getProducts: (page = 1) => request<any>(`/api/products?page=${page}`),
+  getProducts: (page = 1, categoryId?: string) => {
+    let url = `/api/products?page=${page}`;
+    if (categoryId) url += `&category=${categoryId}`;
+    return request<any>(url);
+  },
   searchProducts: (q: string, page = 1) => request<any>(`/api/products/search?q=${encodeURIComponent(q)}&page=${page}`),
   getProduct: (id: string) => request<any>(`/api/products/${id}`),
   getShippingOptions: () => request<any[]>('/api/shipping-options'),
   getPaymentOptions: () => request<any[]>('/api/payment-options'),
   getWhatsAppConfig: () => request<{ phoneNumber: string }>('/api/config/whatsapp'),
+  getCategories: () => request<any[]>('/api/categories'),
 
   // Auth
   login: (username: string, password: string) =>
@@ -99,4 +104,9 @@ export const api = {
   getAdminWhatsApp: () => request<{ phoneNumber: string }>('/api/admin/config/whatsapp'),
   updateWhatsApp: (phoneNumber: string) =>
     request<any>('/api/admin/config/whatsapp', { method: 'PUT', body: JSON.stringify({ phoneNumber }) }),
+
+  // Admin Categories
+  getAdminCategories: () => request<any[]>('/api/admin/categories'),
+  createCategory: (name: string) => request<any>('/api/admin/categories', { method: 'POST', body: JSON.stringify({ name }) }),
+  deleteCategory: (id: string) => request<any>(`/api/admin/categories/${id}`, { method: 'DELETE' }),
 };
