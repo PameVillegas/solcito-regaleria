@@ -32,6 +32,24 @@ async function main() {
     console.log('✅ Payment options created');
   }
 
+  // Create default categories
+  const categoryCount = await prisma.category.count();
+  if (categoryCount === 0) {
+    const defaultCategories = [
+      'Labiales',
+      'Gloss y Bálsamos',
+      'Esponjas',
+      'Bases',
+      'Mascarillas',
+    ];
+    for (const name of defaultCategories) {
+      await prisma.category.create({ data: { name } });
+    }
+    console.log('✅ Categories created');
+  } else {
+    console.log('✅ Categories already exist');
+  }
+
   // Set default WhatsApp number
   const whatsappConfig = await prisma.systemConfig.findUnique({ where: { key: 'whatsapp_number' } });
   if (!whatsappConfig) {
