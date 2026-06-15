@@ -72,15 +72,18 @@ export function CatalogPage() {
           </div>
 
           {/* Trust badges */}
-          <div className="flex justify-center gap-6 md:gap-12 py-5 border-b border-[#F2DDD5] bg-white text-xs md:text-sm text-[#C9A396] px-4 overflow-x-auto">
-            <div className="flex items-center gap-2 whitespace-nowrap">
-              <span className="text-lg">🚚</span> Envíos a todo el país
+          <div className="grid grid-cols-3 py-4 border-b border-[#F2DDD5] bg-white text-xs text-[#C9A396] px-4 gap-2 text-center">
+            <div className="flex flex-col items-center gap-1">
+              <span className="text-lg">🚚</span>
+              <span>Envíos a todo el país</span>
             </div>
-            <div className="flex items-center gap-2 whitespace-nowrap">
-              <span className="text-lg">✨</span> Productos de calidad
+            <div className="flex flex-col items-center gap-1">
+              <span className="text-lg">✨</span>
+              <span>Productos de calidad</span>
             </div>
-            <div className="flex items-center gap-2 whitespace-nowrap">
-              <span className="text-lg">💬</span> Atención personalizada
+            <div className="flex flex-col items-center gap-1">
+              <span className="text-lg">💬</span>
+              <span>Atención personalizada</span>
             </div>
           </div>
 
