@@ -5,6 +5,7 @@ import { CatalogPage } from './pages/CatalogPage';
 import { ProductDetailPage } from './pages/ProductDetailPage';
 import { CartPage } from './pages/CartPage';
 import { CheckoutPage } from './pages/CheckoutPage';
+import { NosotrosPage } from './pages/NosotrosPage';
 import { LoginPage } from './pages/admin/LoginPage';
 import { AdminDashboard } from './pages/admin/AdminDashboard';
 import { AdminProducts } from './pages/admin/AdminProducts';
@@ -22,6 +23,7 @@ export default function App() {
         <Route path="/product/:id" element={<ProductDetailPage />} />
         <Route path="/cart" element={<CartPage />} />
         <Route path="/checkout" element={<CheckoutPage />} />
+        <Route path="/nosotros" element={<NosotrosPage />} />
       </Route>
 
       {/* Admin login */}

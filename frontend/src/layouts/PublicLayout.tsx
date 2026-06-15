@@ -143,9 +143,9 @@ export function PublicLayout() {
           <span className="text-lg">🏠</span>
           Inicio
         </Link>
-        <Link to="/?view=categories" className="flex flex-col items-center text-xs text-gray-500">
-          <span className="text-lg">📂</span>
-          Categorías
+        <Link to="/nosotros" className="flex flex-col items-center text-xs text-gray-500">
+          <span className="text-lg">📍</span>
+          Nosotros
         </Link>
         <Link to="/cart" className="flex flex-col items-center text-xs text-gray-500 relative">
           <span className="text-lg">🛒</span>

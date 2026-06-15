@@ -66,7 +66,7 @@ export function CatalogPage() {
                   🛍️ Ver catálogo
                 </button>
               </div>
-              <img src="/regalos.jpg" alt="Regalos" className="hidden md:block w-56 lg:w-72 rounded-2xl shadow-2xl object-cover" />
+              <img src="/banner.png" alt="Regalos" className="hidden md:block w-56 lg:w-72 rounded-2xl shadow-2xl object-cover" />
             </div>
           </div>
 
