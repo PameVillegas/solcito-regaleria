@@ -52,17 +52,17 @@ export function CatalogPage() {
       {!showCatalog && !query && (
         <div>
           {/* Main Hero */}
-          <div className="bg-gradient-to-r from-[--color-terracota] via-[--color-rosa-viejo] to-[--color-terracota-light] text-white px-6 py-10 md:py-16 md:rounded-b-2xl">
+          <div className="bg-gradient-to-r from-[#C4775B] via-[#C9A396] to-[#E8A88C] text-white px-6 py-10 md:py-16 md:rounded-b-2xl">
             <div className="max-w-7xl mx-auto flex items-center justify-between gap-6">
               <div className="max-w-lg">
-                <h1 className="text-3xl md:text-5xl font-[--font-playfair] font-bold mb-3">Encontrá el regalo perfecto</h1>
+                <h1 className="text-3xl md:text-5xl font-bold mb-3" style={{fontFamily:'Playfair Display,serif'}}>Encontrá el regalo perfecto</h1>
                 <p className="text-base md:text-lg opacity-90 mb-2 font-light">
                   🎂 Cumpleaños · 💝 Aniversarios · 👨 Día del Padre · 🎁 Regalos personalizados
                 </p>
                 <p className="text-sm opacity-80 mb-5">Detalles únicos, para momentos especiales.</p>
                 <button
                   onClick={() => setShowCatalog(true)}
-                  className="inline-block bg-white text-[--color-terracota] px-6 py-3 rounded-full font-bold hover:bg-[--color-crema] transition text-sm md:text-base shadow-lg"
+                  className="inline-block bg-white text-[#C4775B] px-6 py-3 rounded-full font-bold hover:bg-[#FDF6F0] transition text-sm md:text-base shadow-lg"
                 >
                   🛍️ Ver catálogo
                 </button>
@@ -72,7 +72,7 @@ export function CatalogPage() {
           </div>
 
           {/* Trust badges */}
-          <div className="flex justify-center gap-6 md:gap-12 py-5 border-b border-[--color-rosa-suave] bg-white text-xs md:text-sm text-[--color-rosa-viejo] px-4 overflow-x-auto">
+          <div className="flex justify-center gap-6 md:gap-12 py-5 border-b border-[#F2DDD5] bg-white text-xs md:text-sm text-[#C9A396] px-4 overflow-x-auto">
             <div className="flex items-center gap-2 whitespace-nowrap">
               <span className="text-lg">🚚</span> Envíos a todo el país
             </div>
@@ -90,38 +90,38 @@ export function CatalogPage() {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
               <button
                 onClick={() => { setSortBy('newest'); setShowCatalog(true); }}
-                className="bg-white rounded-xl shadow-sm p-4 text-center hover:shadow-md transition border border-[--color-rosa-suave]"
+                className="bg-white rounded-xl shadow-sm p-4 text-center hover:shadow-md transition border border-[#F2DDD5]"
               >
                 <span className="text-2xl block mb-1">🆕</span>
-                <span className="text-sm font-medium text-[--color-terracota]">Nuevos ingresos</span>
+                <span className="text-sm font-medium text-[#C4775B]">Nuevos ingresos</span>
               </button>
               <button
                 onClick={() => { setSortBy('price_asc'); setShowCatalog(true); }}
-                className="bg-white rounded-xl shadow-sm p-4 text-center hover:shadow-md transition border border-[--color-rosa-suave]"
+                className="bg-white rounded-xl shadow-sm p-4 text-center hover:shadow-md transition border border-[#F2DDD5]"
               >
                 <span className="text-2xl block mb-1">🏷️</span>
-                <span className="text-sm font-medium text-[--color-terracota]">Ofertas de la semana</span>
+                <span className="text-sm font-medium text-[#C4775B]">Ofertas de la semana</span>
               </button>
               <button
                 onClick={() => { setSortBy(''); setShowCatalog(true); }}
-                className="bg-white rounded-xl shadow-sm p-4 text-center hover:shadow-md transition border border-[--color-rosa-suave]"
+                className="bg-white rounded-xl shadow-sm p-4 text-center hover:shadow-md transition border border-[#F2DDD5]"
               >
                 <span className="text-2xl block mb-1">⭐</span>
-                <span className="text-sm font-medium text-[--color-terracota]">Más vendidos</span>
+                <span className="text-sm font-medium text-[#C4775B]">Más vendidos</span>
               </button>
               <button
                 onClick={() => { setShowCatalog(true); }}
-                className="bg-white rounded-xl shadow-sm p-4 text-center hover:shadow-md transition border border-[--color-rosa-suave]"
+                className="bg-white rounded-xl shadow-sm p-4 text-center hover:shadow-md transition border border-[#F2DDD5]"
               >
                 <span className="text-2xl block mb-1">📂</span>
-                <span className="text-sm font-medium text-[--color-terracota]">Categorías</span>
+                <span className="text-sm font-medium text-[#C4775B]">Categorías</span>
               </button>
             </div>
 
             {/* Categories preview */}
             {categories.length > 0 && (
               <div className="mb-8">
-                <h2 className="font-[--font-playfair] font-bold text-[--color-terracota] text-lg mb-3">Categorías</h2>
+                <h2 className="font-bold text-[#C4775B] text-lg mb-3" style={{fontFamily:'Playfair Display,serif'}}>Categorías</h2>
                 <div className="flex gap-4 overflow-x-auto pb-2">
                   {categories.map((cat, i) => {
                     const emojis = ['🎂', '💝', '🌸', '💄', '✨', '🎁', '🧸', '💐'];
@@ -131,7 +131,7 @@ export function CatalogPage() {
                         onClick={() => { setSelectedCategory(cat.id); setShowCatalog(true); }}
                         className="flex flex-col items-center gap-1 min-w-[80px]"
                       >
-                        <div className="w-16 h-16 rounded-full bg-[--color-rosa-suave] flex items-center justify-center text-2xl border-2 border-[--color-rosa-viejo] hover:border-[--color-terracota] transition">
+                        <div className="w-16 h-16 rounded-full bg-[#F2DDD5] flex items-center justify-center text-2xl border-2 border-[#C9A396] hover:border-[#C4775B] transition">
                           {emojis[i % emojis.length]}
                         </div>
                         <span className="text-xs text-gray-700 truncate max-w-[80px]">{cat.name}</span>
@@ -143,16 +143,12 @@ export function CatalogPage() {
             )}
 
             {/* Info section */}
-            <div className="bg-[--color-rosa-suave] rounded-xl p-6 text-center">
-              <h2 className="font-[--font-playfair] font-bold text-[--color-terracota] text-lg mb-2">📍 Visitanos</h2>
-              <p className="text-[--color-terracota]">Bolivia N° 592, Ciudad Junín, Buenos Aires</p>
-              <p className="text-[--color-rosa-viejo] text-sm mt-1">Vendedora: Sol Fernandez</p>
-              <a
-                href="https://www.instagram.com/solcito.regaleria?igsh=YzFndTRlMDI4Z2V5"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block mt-3 text-[--color-terracota] hover:underline font-medium text-sm"
-              >
+            <div className="bg-[#F2DDD5] rounded-xl p-6 text-center">
+              <h2 className="font-bold text-[#C4775B] text-lg mb-2" style={{fontFamily:'Playfair Display,serif'}}>📍 Visitanos</h2>
+              <p className="text-[#C4775B]">Bolivia N° 592, Ciudad Junín, Buenos Aires</p>
+              <p className="text-[#C9A396] text-sm mt-1">Vendedora: Sol Fernandez</p>
+              <a href="https://www.instagram.com/solcito.regaleria?igsh=YzFndTRlMDI4Z2V5" target="_blank" rel="noopener noreferrer"
+                className="inline-block mt-3 text-[#C4775B] hover:underline font-medium text-sm">
                 📸 @solcito.regaleria
               </a>
             </div>
@@ -176,7 +172,7 @@ export function CatalogPage() {
               <div className="flex gap-3 overflow-x-auto pb-2">
                 <button
                   onClick={() => { setSelectedCategory(''); setPage(1); }}
-                  className={`px-4 py-1.5 rounded-full text-sm font-medium whitespace-nowrap transition ${!selectedCategory ? 'bg-[--color-terracota] text-white' : 'bg-white text-gray-600 border border-[--color-rosa-suave] hover:border-[--color-terracota]'}`}
+                  className={`px-4 py-1.5 rounded-full text-sm font-medium whitespace-nowrap transition ${!selectedCategory ? 'bg-[#C4775B] text-white' : 'bg-white text-gray-600 border border-[#F2DDD5] hover:border-[#C4775B]'}`}
                 >
                   Todos
                 </button>
@@ -184,7 +180,7 @@ export function CatalogPage() {
                   <button
                     key={cat.id}
                     onClick={() => { setSelectedCategory(cat.id); setPage(1); }}
-                    className={`px-4 py-1.5 rounded-full text-sm font-medium whitespace-nowrap transition ${selectedCategory === cat.id ? 'bg-[--color-terracota] text-white' : 'bg-white text-gray-600 border border-[--color-rosa-suave] hover:border-[--color-terracota]'}`}
+                    className={`px-4 py-1.5 rounded-full text-sm font-medium whitespace-nowrap transition ${selectedCategory === cat.id ? 'bg-[#C4775B] text-white' : 'bg-white text-gray-600 border border-[#F2DDD5] hover:border-[#C4775B]'}`}
                   >
                     {cat.name}
                   </button>
@@ -252,7 +248,7 @@ export function CatalogPage() {
                           {product.discountedPrice ? (
                             <div>
                               <span className="text-gray-400 line-through text-xs">{formatPrice(product.price)}</span>
-                              <span className="text-[--color-terracota] font-bold text-sm ml-1">{formatPrice(product.discountedPrice)}</span>
+                              <span className="text-[#C4775B] font-bold text-sm ml-1">{formatPrice(product.discountedPrice)}</span>
                             </div>
                           ) : (
                             <span className="text-gray-800 font-bold text-sm">{formatPrice(product.price)}</span>
@@ -268,10 +264,10 @@ export function CatalogPage() {
               {pagination && pagination.totalPages > 1 && (
                 <div className="flex justify-center gap-2 mt-6">
                   <button onClick={() => setPage(p => Math.max(1, p - 1))} disabled={page === 1}
-                    className="px-3 py-1.5 bg-[--color-terracota] text-white rounded-full text-sm disabled:opacity-50">←</button>
+                    className="px-3 py-1.5 bg-[#C4775B] text-white rounded-full text-sm disabled:opacity-50">←</button>
                   <span className="px-3 py-1.5 text-gray-600 text-sm">{page} / {pagination.totalPages}</span>
                   <button onClick={() => setPage(p => Math.min(pagination.totalPages, p + 1))} disabled={page === pagination.totalPages}
-                    className="px-3 py-1.5 bg-[--color-terracota] text-white rounded-full text-sm disabled:opacity-50">→</button>
+                    className="px-3 py-1.5 bg-[#C4775B] text-white rounded-full text-sm disabled:opacity-50">→</button>
                 </div>
               )}
             </>

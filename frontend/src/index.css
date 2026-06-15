@@ -1,17 +1,8 @@
 @import "tailwindcss";
 
-@theme {
-  --font-playfair: 'Playfair Display', serif;
-  --font-poppins: 'Poppins', sans-serif;
-  --color-terracota: #C4775B;
-  --color-terracota-light: #E8A88C;
-  --color-crema: #FDF6F0;
-  --color-rosa-viejo: #C9A396;
-  --color-rosa-suave: #F2DDD5;
-}
-
 body {
   font-family: 'Poppins', sans-serif;
+  background-color: #FDF6F0;
 }
 
 h1, h2, h3 {
