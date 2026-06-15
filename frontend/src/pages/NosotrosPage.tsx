@@ -6,7 +6,7 @@ export function NosotrosPage() {
       <div className="bg-white rounded-xl shadow-sm p-6 space-y-6">
         {/* Logo and name */}
         <div className="text-center">
-          <img src="/logosol.png" alt="Solcito Regalería" className="h-20 w-auto mx-auto mb-3" />
+          <img src="/solfoto.png" alt="Sol Fernandez" className="h-32 w-32 rounded-full object-cover mx-auto mb-3 border-4 border-[#F2DDD5]" />
           <h2 className="text-xl font-bold text-amber-700">Solcito Regalería</h2>
           <p className="text-gray-500">Regalos para toda ocasión</p>
         </div>
