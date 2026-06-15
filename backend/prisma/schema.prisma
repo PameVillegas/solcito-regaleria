@@ -100,3 +100,34 @@ model SystemConfig {
   value     String
   updatedAt DateTime @updatedAt
 }
+
+model Sale {
+  id            String     @id @default(uuid())
+  customerName  String     @default("")
+  total         Float
+  paymentMethod String
+  notes         String     @default("")
+  createdAt     DateTime   @default(now())
+
+  items SaleItem[]
+}
+
+model SaleItem {
+  id          String @id @default(uuid())
+  saleId      String
+  productName String
+  quantity    Int
+  unitPrice   Float
+  color       String @default("")
+
+  sale Sale @relation(fields: [saleId], references: [id], onDelete: Cascade)
+}
+
+model Finance {
+  id          String   @id @default(uuid())
+  type        String
+  description String
+  amount      Float
+  date        DateTime @default(now())
+  createdAt   DateTime @default(now())
+}

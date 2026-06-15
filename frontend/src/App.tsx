@@ -12,6 +12,8 @@ import { AdminProducts } from './pages/admin/AdminProducts';
 import { AdminProductForm } from './pages/admin/AdminProductForm';
 import { AdminConfig } from './pages/admin/AdminConfig';
 import { AdminCategories } from './pages/admin/AdminCategories';
+import { AdminSales } from './pages/admin/AdminSales';
+import { AdminFinances } from './pages/admin/AdminFinances';
 import { ProtectedRoute } from './components/ProtectedRoute';
 
 export default function App() {
@@ -37,6 +39,8 @@ export default function App() {
           <Route path="/admin/products/new" element={<AdminProductForm />} />
           <Route path="/admin/products/:id" element={<AdminProductForm />} />
           <Route path="/admin/categories" element={<AdminCategories />} />
+          <Route path="/admin/sales" element={<AdminSales />} />
+          <Route path="/admin/finances" element={<AdminFinances />} />
           <Route path="/admin/config" element={<AdminConfig />} />
         </Route>
       </Route>

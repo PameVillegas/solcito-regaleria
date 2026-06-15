@@ -110,4 +110,16 @@ export const api = {
   getAdminCategories: () => request<any[]>('/api/admin/categories'),
   createCategory: (name: string) => request<any>('/api/admin/categories', { method: 'POST', body: JSON.stringify({ name }) }),
   deleteCategory: (id: string) => request<any>(`/api/admin/categories/${id}`, { method: 'DELETE' }),
+
+  // Admin Sales
+  getAdminSales: (month?: string) => request<any[]>(`/api/admin/sales${month ? `?month=${month}` : ''}`),
+  getSalesStats: () => request<any>('/api/admin/sales/stats'),
+  createSale: (data: any) => request<any>('/api/admin/sales', { method: 'POST', body: JSON.stringify(data) }),
+  deleteSale: (id: string) => request<any>(`/api/admin/sales/${id}`, { method: 'DELETE' }),
+
+  // Admin Finances
+  getFinances: (month?: string) => request<any[]>(`/api/admin/finances${month ? `?month=${month}` : ''}`),
+  getFinanceSummary: (month?: string) => request<any>(`/api/admin/finances/summary${month ? `?month=${month}` : ''}`),
+  createFinance: (data: any) => request<any>('/api/admin/finances', { method: 'POST', body: JSON.stringify(data) }),
+  deleteFinance: (id: string) => request<any>(`/api/admin/finances/${id}`, { method: 'DELETE' }),
 };

@@ -14,6 +14,8 @@ import { configPublicRoutes } from './routes/config.routes';
 import { adminConfigRoutes } from './routes/admin/config.routes';
 import { categoryPublicRoutes } from './routes/category.routes';
 import { adminCategoryRoutes } from './routes/admin/category.routes';
+import { adminSalesRoutes } from './routes/admin/sales.routes';
+import { adminFinancesRoutes } from './routes/admin/finances.routes';
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -40,6 +42,8 @@ app.use('/api/admin/categories', adminCategoryRoutes);
 app.use('/api/admin/shipping-options', adminShippingRoutes);
 app.use('/api/admin/payment-options', adminPaymentRoutes);
 app.use('/api/admin/config', adminConfigRoutes);
+app.use('/api/admin/sales', adminSalesRoutes);
+app.use('/api/admin/finances', adminFinancesRoutes);
 
 // Health check
 app.get('/api/health', (_req, res) => {
