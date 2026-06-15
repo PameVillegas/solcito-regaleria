@@ -17,30 +17,30 @@ export function PublicLayout() {
   };
 
   return (
-    <div className="min-h-screen bg-[#FDF6F0] pb-16 md:pb-0">
+    <div className="min-h-screen bg-[#FFF9F5] pb-16 md:pb-0">
       {/* Header */}
-      <header className="bg-white shadow-sm sticky top-0 z-50 border-b border-[#F2DDD5]">
+      <header className="bg-white shadow-sm sticky top-0 z-50 border-b border-[#F3E5E0]">
         <div className="max-w-7xl mx-auto px-4 py-2 flex items-center justify-between gap-3">
-          <button onClick={() => setMenuOpen(!menuOpen)} className="md:hidden text-[#C4775B] text-xl">☰</button>
+          <button onClick={() => setMenuOpen(!menuOpen)} className="md:hidden text-[#C5A46B] text-xl">☰</button>
 
           <Link to="/" className="flex items-center gap-2">
             <img src="/logosol.png" alt="Logo" className="h-9 w-auto" />
             <div className="hidden sm:block">
-              <span className="font-bold text-[#C4775B] text-sm leading-tight block" style={{fontFamily:'Playfair Display,serif'}}>Solcito Regalería</span>
-              <span className="text-xs text-[#C9A396]">Detalles únicos, para momentos especiales</span>
+              <span className="font-bold text-[#C5A46B] text-sm leading-tight block" style={{fontFamily:'Playfair Display,serif'}}>Solcito Regalería</span>
+              <span className="text-xs text-[#D4A5A5]">Detalles únicos, para momentos especiales</span>
             </div>
           </Link>
 
           <form onSubmit={handleSearch} className="hidden md:flex flex-1 max-w-md">
             <input type="text" placeholder="Buscar artículos..." value={searchQuery} onChange={e => setSearchQuery(e.target.value)}
-              className="w-full px-4 py-2 border border-[#F2DDD5] rounded-l-full text-sm bg-white focus:outline-none focus:border-[#C4775B]" />
-            <button type="submit" className="bg-[#C4775B] text-white px-4 rounded-r-full hover:bg-[#E8A88C]">🔍</button>
+              className="w-full px-4 py-2 border border-[#F3E5E0] rounded-l-full text-sm bg-white focus:outline-none focus:border-[#C5A46B]" />
+            <button type="submit" className="bg-[#C5A46B] text-white px-4 rounded-r-full hover:bg-[#B8956A]">🔍</button>
           </form>
 
-          <Link to="/cart" className="relative text-[#C4775B]">
+          <Link to="/cart" className="relative text-[#C5A46B]">
             <span className="text-2xl">🛒</span>
             {totalItems > 0 && (
-              <span className="absolute -top-1 -right-2 bg-[#C4775B] text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold">{totalItems}</span>
+              <span className="absolute -top-1 -right-2 bg-[#E8C4C4] text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold">{totalItems}</span>
             )}
           </Link>
         </div>
@@ -48,13 +48,13 @@ export function PublicLayout() {
         <div className="md:hidden px-4 pb-2">
           <form onSubmit={handleSearch} className="flex">
             <input type="text" placeholder="Buscar artículos..." value={searchQuery} onChange={e => setSearchQuery(e.target.value)}
-              className="w-full px-4 py-2 border border-[#F2DDD5] rounded-l-full text-sm bg-white focus:outline-none focus:border-[#C4775B]" />
-            <button type="submit" className="bg-[#C4775B] text-white px-4 rounded-r-full">🔍</button>
+              className="w-full px-4 py-2 border border-[#F3E5E0] rounded-l-full text-sm bg-white focus:outline-none focus:border-[#C5A46B]" />
+            <button type="submit" className="bg-[#C5A46B] text-white px-4 rounded-r-full">🔍</button>
           </form>
         </div>
 
         {menuOpen && (
-          <div className="md:hidden bg-white border-t border-[#F2DDD5] px-4 py-3 space-y-2">
+          <div className="md:hidden bg-white border-t border-[#F3E5E0] px-4 py-3 space-y-2">
             <Link to="/" onClick={() => setMenuOpen(false)} className="block py-1 text-gray-700">🏠 Inicio</Link>
             <Link to="/nosotros" onClick={() => setMenuOpen(false)} className="block py-1 text-gray-700">📍 Nosotros</Link>
             <Link to="/cart" onClick={() => setMenuOpen(false)} className="block py-1 text-gray-700">🛒 Carrito</Link>
@@ -66,35 +66,35 @@ export function PublicLayout() {
       <main className="max-w-7xl mx-auto"><Outlet /></main>
 
       {/* Footer */}
-      <footer className="bg-[#C4775B] text-white mt-8">
+      <footer className="bg-[#E8C4C4] text-gray-800 mt-8">
         <div className="max-w-7xl mx-auto px-4 py-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div>
               <div className="flex items-center gap-2 mb-3">
                 <img src="/logosol.png" alt="Logo" className="h-8 w-auto" />
                 <div>
-                  <p className="font-bold" style={{fontFamily:'Playfair Display,serif'}}>Solcito Regalería</p>
-                  <p className="text-[#F2DDD5] text-xs">Detalles únicos, para momentos especiales</p>
+                  <p className="font-bold text-[#C5A46B]" style={{fontFamily:'Playfair Display,serif'}}>Solcito Regalería</p>
+                  <p className="text-[#8B6F6F] text-xs">Detalles únicos, para momentos especiales</p>
                 </div>
               </div>
-              <p className="text-[#F2DDD5] text-sm">Vendedora: Sol Fernandez</p>
+              <p className="text-[#6B5050] text-sm">Vendedora: Sol Fernandez</p>
             </div>
             <div>
-              <p className="font-medium mb-2">📍 Ubicación</p>
-              <p className="text-[#F2DDD5] text-sm">Bolivia N° 592, Ciudad Junín</p>
-              <p className="text-[#F2DDD5] text-sm">Buenos Aires, Argentina</p>
-              <p className="text-[#F2DDD5] text-sm mt-1">📞 +54 236 427 4864</p>
+              <p className="font-medium text-[#C5A46B] mb-2">📍 Ubicación</p>
+              <p className="text-[#6B5050] text-sm">Bolivia N° 592, Ciudad Junín</p>
+              <p className="text-[#6B5050] text-sm">Buenos Aires, Argentina</p>
+              <p className="text-[#6B5050] text-sm mt-1">📞 +54 236 427 4864</p>
             </div>
             <div>
-              <p className="font-medium mb-2">🕐 Horarios</p>
-              <p className="text-[#F2DDD5] text-sm">Lunes a Sábados</p>
-              <p className="text-[#F2DDD5] text-sm">08:00 a 12:00 | 16:00 a 21:00</p>
-              <a href="https://www.instagram.com/solcito.regaleria?igsh=YzFndTRlMDI4Z2V5" target="_blank" rel="noopener noreferrer" className="text-[#F2DDD5] text-sm hover:text-white mt-2 inline-block">📸 @solcito.regaleria</a>
+              <p className="font-medium text-[#C5A46B] mb-2">🕐 Horarios</p>
+              <p className="text-[#6B5050] text-sm">Lunes a Sábados</p>
+              <p className="text-[#6B5050] text-sm">08:00 a 12:00 | 16:00 a 21:00</p>
+              <a href="https://www.instagram.com/solcito.regaleria?igsh=YzFndTRlMDI4Z2V5" target="_blank" rel="noopener noreferrer" className="text-[#C5A46B] text-sm hover:underline mt-2 inline-block">📸 @solcito.regaleria</a>
             </div>
           </div>
         </div>
-        <div className="border-t border-[#E8A88C] text-center py-2">
-          <Link to="/admin/login" className="text-[#F2DDD5] text-xs hover:text-white">Acceso administración</Link>
+        <div className="border-t border-[#D4A5A5] text-center py-2">
+          <Link to="/admin/login" className="text-[#8B6F6F] text-xs hover:text-[#C5A46B]">Acceso administración</Link>
         </div>
       </footer>
 
@@ -106,16 +106,16 @@ export function PublicLayout() {
       </a>
 
       {/* Bottom nav mobile */}
-      <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-[#F2DDD5] flex justify-around py-2 z-50">
-        <Link to="/" className="flex flex-col items-center text-xs text-[#C4775B]">
+      <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-[#F3E5E0] flex justify-around py-2 z-50">
+        <Link to="/" className="flex flex-col items-center text-xs text-[#C5A46B]">
           <span className="text-lg">🏠</span>Inicio
         </Link>
-        <Link to="/nosotros" className="flex flex-col items-center text-xs text-gray-500">
+        <Link to="/nosotros" className="flex flex-col items-center text-xs text-[#D4A5A5]">
           <span className="text-lg">📍</span>Nosotros
         </Link>
-        <Link to="/cart" className="flex flex-col items-center text-xs text-gray-500 relative">
+        <Link to="/cart" className="flex flex-col items-center text-xs text-[#D4A5A5] relative">
           <span className="text-lg">🛒</span>Carrito
-          {totalItems > 0 && <span className="absolute -top-1 right-2 bg-[#C4775B] text-white text-xs w-4 h-4 rounded-full flex items-center justify-center">{totalItems}</span>}
+          {totalItems > 0 && <span className="absolute -top-1 right-2 bg-[#C5A46B] text-white text-xs w-4 h-4 rounded-full flex items-center justify-center">{totalItems}</span>}
         </Link>
       </nav>
     </div>
