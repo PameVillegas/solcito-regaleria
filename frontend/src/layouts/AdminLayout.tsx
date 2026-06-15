@@ -14,7 +14,7 @@ export function AdminLayout() {
     <div className="min-h-screen bg-[#FFF9F5] flex flex-col md:flex-row">
       {/* Mobile header */}
       <div className="md:hidden bg-[#C5A46B] text-white p-4 flex items-center justify-between">
-        <span className="font-bold" style={{fontFamily:'Playfair Display,serif'}}>🌻 Admin</span>
+        <Link to="/admin" className="font-bold" style={{fontFamily:'Playfair Display,serif'}}>🌻 Admin</Link>
         <button onClick={() => setMenuOpen(!menuOpen)} className="text-2xl">☰</button>
       </div>
 
